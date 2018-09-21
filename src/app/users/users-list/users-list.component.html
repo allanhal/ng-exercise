@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users; let i = index">
+      <tr *ngFor="let user of users; let i = index" (click)='gotoDetail(user.login.uuid)'>
         <th>{{i+1}}</th>
         <td>{{user.name.first}}</td>
         <td>{{user.name.last}}</td>

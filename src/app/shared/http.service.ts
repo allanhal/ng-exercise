@@ -10,8 +10,18 @@ export class HttpService {
 
   getUsers(): Promise<User[]> {
     return new Promise<User[]>((resolve, reject) => {
-      this.httpClient.get<RandomUserInterface>(`https://randomuser.me/api/?results=5`).subscribe(randomUserInterface => {
+      this.httpClient.get<RandomUserInterface>(`https://randomuser.me/api/?results=5&inc=name,email,phone,picture,login&seed=allan`).subscribe(randomUserInterface => {
         resolve(randomUserInterface.results)
+      }, err => {
+        reject(err);
+      })
+    })
+  }
+
+  getUser(uuid): Promise<User> {
+    return new Promise<User>((resolve, reject) => {
+      this.httpClient.get<RandomUserInterface>(`https://randomuser.me/api/?results=5&inc=name,email,phone,picture,login&seed=allan`).subscribe(randomUserInterface => {
+        resolve(randomUserInterface.results.find(user => user.login.uuid == uuid))
       }, err => {
         reject(err);
       })

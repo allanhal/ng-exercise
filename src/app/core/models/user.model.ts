@@ -5,4 +5,10 @@ export interface User {
   }
   email: string
   phone: string
+  picture: {
+    large: string
+  },
+  login: {
+    uuid: string
+  }
 }

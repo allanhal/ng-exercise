@@ -13,7 +13,13 @@ export class AppContentComponent implements OnInit {
       last: 'Ayaz'
     },
     email: 'almir.shakkar@me.com',
-    phone: '999-131-331'
+    phone: '999-131-331',
+    picture: {
+      large: '1234'
+    },
+    login: {
+      uuid: '1234'
+    }
   };
   isLoggedIn: boolean;
   constructor() { }

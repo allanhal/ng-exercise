@@ -1,3 +1,29 @@
-<p>
-  user-detail works!
-</p>
+<div class="container">
+
+
+  <div class="d-inline-block">
+    
+    <h1><a routerLink="/users" routerLinkActive="active"><i class="fa fas fa-arrow-left fa-1x m-2"></i></a>User</h1>
+  </div>
+  <img class='m-5 img-thumbnail round mx-auto d-block' src="{{user?.picture?.large}}">
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <th>First Name</th>
+        <td>{{user?.name?.first}}</td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td>{{user?.name?.last}}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{user?.email}}</td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td>{{user?.phone}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

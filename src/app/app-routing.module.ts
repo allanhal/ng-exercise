@@ -12,7 +12,6 @@ let routes: Routes = [{
   component: HomeComponent
 }, {
   path: 'users',
-  // component: UsersListComponent
   loadChildren: 'app/users/users.module#UsersModule'
 }, {
   path: '**',
