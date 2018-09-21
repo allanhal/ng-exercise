@@ -8,8 +8,12 @@ import { User } from '../../models/user.model';
 })
 export class AppHeaderComponent implements OnInit {
   user: User = {
-    firstName: 'Ahsan',
-    lastName: 'Ayaz'
+    name: {
+      first: 'Ahsan',
+      last: 'Ayaz'
+    },
+    email: 'almir.shakkar@me.com',
+    phone: '999-131-331'
   };
   isLoggedIn: boolean;
   constructor() { }

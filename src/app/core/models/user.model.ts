@@ -1,4 +1,8 @@
 export interface User {
-  firstName: string;
-  lastName: string;
+  name: {
+    first: string
+    last: string
+  }
+  email: string
+  phone: string
 }

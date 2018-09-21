@@ -8,6 +8,10 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { LandingComponent } from './landing/landing.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
