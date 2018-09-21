@@ -10,15 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserDetailComponent implements OnInit {
 
-  private user: User
+  user: User
 
   constructor(private HttpService: HttpService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.loadUser()
   }
-  loadUser(): any {
+
+  loadUser() {
     const uuid = this.route.snapshot.params.uuid;
     this.HttpService.getUser(uuid).then(user => {
       this.user = user

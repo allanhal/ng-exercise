@@ -14,13 +14,13 @@ let routes: Routes = [{
   path: 'users',
   loadChildren: 'app/users/users.module#UsersModule'
 }, {
-  path: '**',
+  path: '',
   redirectTo: 'home',
   pathMatch: 'full'
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

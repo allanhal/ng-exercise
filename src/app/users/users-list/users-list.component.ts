@@ -1,7 +1,7 @@
 import { User } from './../../core/models/user.model';
 import { HttpService } from './../../shared/http.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ng-e-users-list',
@@ -10,24 +10,25 @@ import { Router } from '@angular/router';
 })
 export class UsersListComponent implements OnInit {
 
-  private users: User[]
+  users: User[]
 
   constructor(private HttpService: HttpService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadUsers()
   }
   loadUsers(): any {
-    this.HttpService.getUsers().then(users => {
+    this.HttpService.getUsers().subscribe(users => {
       this.users = users
-    }).catch(err => {
+    }, err => {
       console.log(err)
     })
   }
 
   gotoDetail(uuid): void {
-    this.router.navigate(['/users/uuid/', { uuid: uuid }]);
+    this.router.navigate([`./${uuid}`], { relativeTo: this.route })
   }
 
 }
