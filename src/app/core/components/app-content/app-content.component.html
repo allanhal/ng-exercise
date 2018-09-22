@@ -1,9 +1,49 @@
-<div class="app-content">
-  <div class="user-profile" *ngIf="isLoggedIn">
-    Hey {{user.firstName}} {{user.lastName}}! Good day ahead!
+<!-- <div class="container">
+  <div class="app-content">
+    <div class="user-profile" *ngIf="(user | async)">
+      <img class='m-2 img-thumbnail round' src="{{(user | async)?.picture?.large}}">
+      <p>
+        Hey {{(user | async)?.name?.first}} {{(user | async)?.name?.last}}! Good day ahead!
+        <br>
+        {{(user | async)?.email}} / {{(user | async)?.phone}}
+      </p>
+    </div>
+    <div class="action-btn">
+      <button class="app-btn" *ngIf="!(user | async)" (click)="login()">Login</button>
+      <button class="app-btn" *ngIf="(user | async)" (click)="logout()">Logout</button>
+    </div>
   </div>
-  <div class="action-btn">
-    <button class="app-btn" *ngIf="!isLoggedIn" (click)="login()">Login</button>
-    <button class="app-btn" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+</div> -->
+
+<div class="container">
+  <div *ngIf="(user | async)">
+    <img class='m-5 img-thumbnail round mx-auto d-block' src="{{(user | async)?.picture?.large}}">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>First Name</th>
+          <td>{{(user | async)?.name?.first}}</td>
+        </tr>
+        <tr>
+          <th>Last Name</th>
+          <td>{{(user | async)?.name?.last}}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{(user | async)?.email}}</td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td>{{(user | async)?.phone}}</td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="app-btn" *ngIf="(user | async)" (click)="logout()">Logout</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="m-5 action-btn" *ngIf="!(user | async)">
+    <button class="app-btn" (click)="login()">Login</button>
   </div>
 </div>

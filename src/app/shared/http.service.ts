@@ -7,11 +7,13 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class HttpService {
 
+  apiUrl: string = `https://randomuser.me/api/?results=20&inc=name,email,phone,picture,login&seed=allan`
+
   constructor(private httpClient: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return new Observable<User[]>(subscriber => {
-      this.httpClient.get<RandomUserInterface>(`https://randomuser.me/api/?results=5&inc=name,email,phone,picture,login&seed=allan`).subscribe(randomUserInterface => {
+      this.httpClient.get<RandomUserInterface>(this.apiUrl).subscribe(randomUserInterface => {
         subscriber.next(randomUserInterface.results)
       }, err => {
         subscriber.error(err)
@@ -19,18 +21,13 @@ export class HttpService {
     })
   }
 
-  getUser(uuid): Promise<User> {
-    return new Promise<User>((resolve, reject) => {
-      this.httpClient.get<RandomUserInterface>(`https://randomuser.me/api/?results=5&inc=name,email,phone,picture,login&seed=allan`).subscribe(randomUserInterface => {
-        resolve(randomUserInterface.results.find(user => user.login.uuid == uuid))
+  getUser(uuid): Observable<User> {
+    return new Observable<User>(subscriber => {
+      this.getUsers().subscribe(users => {
+        subscriber.next(users.find(user => user.login.uuid == uuid))
       }, err => {
-        reject(err)
+        subscriber.error(err)
       })
     })
   }
-
-  // sendEmail(user: string, message: string) {
-  //   this.httpClient.get('')
-  // }
-
 }

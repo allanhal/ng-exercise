@@ -1,5 +1,5 @@
 import { User } from "./user.model";
 
-export interface RandomUserInterface {
+export class RandomUserInterface {
     results: User[]
 }

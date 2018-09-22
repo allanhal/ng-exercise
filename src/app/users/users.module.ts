@@ -1,3 +1,4 @@
+import { UserContainer } from './../shared/user.container';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersRoutingModule } from './users-routing.module';

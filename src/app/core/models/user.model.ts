@@ -1,4 +1,4 @@
-export interface User {
+export class User {
   name: {
     first: string
     last: string
@@ -7,7 +7,7 @@ export interface User {
   phone: string
   picture: {
     large: string
-  },
+  }
   login: {
     uuid: string
   }

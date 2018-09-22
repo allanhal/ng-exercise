@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
+import { Observable } from 'rxjs/Observable';
+import { UserContainer } from '../../../shared/user.container';
 
 @Component({
   selector: 'ng-e-app-content',
@@ -7,25 +9,25 @@ import { User } from '../../models/user.model';
   styleUrls: ['./app-content.component.scss']
 })
 export class AppContentComponent implements OnInit {
-  user: User = {
+  user: Observable<User> = this.UserContainer.select(state => state.user);
+  defaultUser: User = {
     name: {
-      first: 'Ahsan',
-      last: 'Ayaz'
+      first: 'Connor',
+      last: 'Nguyen'
     },
-    email: 'almir.shakkar@me.com',
-    phone: '999-131-331',
+    email: 'connor.nguyen@example.com',
+    phone: '061-183-7320',
     picture: {
-      large: '1234'
+      large: 'https://randomuser.me/api/portraits/men/27.jpg'
     },
     login: {
-      uuid: '1234'
+      uuid: '2985dd3c-0f12-404f-9a2b-525745a6d406'
     }
   };
-  isLoggedIn: boolean;
-  constructor() { }
+
+  constructor(private UserContainer: UserContainer) { }
 
   ngOnInit() {
-    this.isLoggedIn = false;
   }
 
   /**
@@ -33,7 +35,7 @@ export class AppContentComponent implements OnInit {
    * @desc Logs the user in
    */
   login() {
-    this.isLoggedIn = true;
+    this.UserContainer.login(this.defaultUser)
   }
 
   /**
@@ -41,7 +43,7 @@ export class AppContentComponent implements OnInit {
    * @desc Logs the user out
    */
   logout() {
-    this.isLoggedIn = false;
+    this.UserContainer.logout()
   }
 
 }
